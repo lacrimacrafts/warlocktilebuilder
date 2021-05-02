@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+    <title>Warlock Tile Map Creator</title>
+    <link rel="stylesheet" href="content/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="content/site.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+</head>
+  <body>
+    <!--<header>
+      <h2>Warlock Tile Map Creator</h2>
+    </header>-->
+    <main>
+      <div class="sidebar">
+        <div id="dungeon-tiles">
+          <h3>Dungeon</h3>
+          <div>
+            <div class="tile dungeon-wood" title="Dungeon Wood 2x2" data-tile-type="dungeon"></div>
+            <div class="tile dungeon-stone" title="Dungeon Stone 2x2" data-tile-type="dungeon"></div>
+            <div class="tile tile-large dungeon-wood-large" title="Dungeon Wood 4x4" data-tile-type="dungeon-large"></div>
+            <div class="tile tile-large dungeon-stone-large" title="Dungeon Stone 4x4" data-tile-type="dungeon-large"></div>
+          </div>
+        </div>
+        <div id="town-village-tiles">
+          <h3>Town & Village</h3>
+          <div>
+            <div class="tile town-wood" title="Town Wood" data-tile-type="town-village"></div>
+            <div class="tile town-stone" title="Town Stone" data-tile-type="town-village"></div>
+          </div>
+        </div>
+        <div id="town-square-tiles">
+          <h3>Town Square</h3>
+          <div>
+            <div class="tile cobblestone-street" title="Cobblestone Street" data-tile-type="street"></div>
+            <div class="tile flagstone-sidewalk" title="Flagstone Sidewalk" data-tile-type="sidewalk"></div>
+            <div class="tile half-street" title="Half Street" data-tile-type="half"></div>
+            <div class="tile flagstone-left-turn" title="Flagstone Left Turn" data-tile-type="flagstone-left"></div>
+            <div class="tile flagstone-right-turn" title="Flagstone Right Turn" data-tile-type="flagstone-right"></div>
+            <div class="tile cobblestone-left-turn" title="Cobblestone Left Turn" data-tile-type="cobblestone-left"></div>
+            <div class="tile cobblestone-right-turn" title="Cobblestone Right Turn" data-tile-type="cobblestone-right"></div>
+            <div class="tile street-inside-corner" title="Street Inside Corner" data-tile-type="inside-corner"></div>
+            <div class="tile street-outside-corner" title="Street Outside Corner" data-tile-type="outside-corner"></div>
+          </div>
+        </div>
+      </div>	
+      <div id="map">
+      </div>
+      <div id="counts" style="display: none;">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Dungeon Tile</th>
+                      <th>Count</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>2"x2" Dual Sided Tile</td>
+                      <td data-tile-type="dungeon" data-max-count="26" data-set-name="dungeon">0</td>
+                  </tr>
+                  <tr>
+                      <td>4"x4" Dual Sided Tile</td>
+                      <td data-tile-type="dungeon-large" data-max-count="2" data-set-name="dungeon">0</td>
+                  </tr>
+                  <tr>
+                      <td>2"x8" Dual Sided Tile</td>
+                      <td data-tile-type="dungeon-long" data-max-count="2" data-set-name="dungeon">0</td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <th>Total Dungeon Sets</th>
+                      <th id="dungeon-count" data-set-name="dungeon">0</th>
+                  </tr>
+              </tfoot>
+          </table>
+          <hr />
+          <table>
+              <thead>
+                  <tr>
+                      <th>Town &amp; Village Tile</th>
+                      <th>Count</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>2"x2" Dual Sided Tile</td>
+                      <td data-tile-type="town-village" data-max-count="24" data-set-name="town-village">0</td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <th>Total Town &amp; Village Sets</th>
+                      <th id="town-village-count" data-set-name="town-village">0</th>
+                  </tr>
+              </tfoot>
+          </table>
+          <hr />
+          <table>
+              <thead>
+                  <tr>
+                      <th>Town Square Tile</th>
+                      <th>Count</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>Cobblestone Street Tile</td>
+                      <td data-tile-type="street" data-max-count="16" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Flagstone Sidewalk Tile</td>
+                      <td data-tile-type="sidewalk" data-max-count="18" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Half Street Tile</td>
+                      <td data-tile-type="half" data-max-count="16" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Street Inside Corner Tile</td>
+                      <td data-tile-type="inside-corner" data-max-count="8" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Street Outside Corner Tile</td>
+                      <td data-tile-type="outside-corner" data-max-count="4" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Flagstone Left Turn Tile</td>
+                      <td data-tile-type="flagstone-left" data-max-count="3" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Flagstone Right Turn Tile</td>
+                      <td data-tile-type="flagstone-right" data-max-count="3" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Cobblestone Left Turn Tile</td>
+                      <td data-tile-type="cobblestone-left" data-max-count="3" data-set-name="town-square">0</td>
+                  </tr>
+                  <tr>
+                      <td>Cobblestone Right Turn Tile</td>
+                      <td data-tile-type="cobblestone-right" data-max-count="3" data-set-name="town-square">0</td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <th>Total Town Square Sets</th>
+                      <th id="town-square-total" data-set-name="town-square">0</th>
+                  </tr>
+              </tfoot>
+          </table>
+      </div>
+      <ul id="option-menu">
+        <li onclick="Rotate90()">Rotate</li>
+        <li onclick="DeleteActiveTile()">Delete</li>
+      </ul>
+    </main>
+    <script language="javascript" type="text/javascript" src="js/WarlockEditor.js"></script>
+  </body>
+</html>
